@@ -69,6 +69,7 @@ else if ($parm == "version") {
 else if ($parm == "help") {
     echo "Drop in Pocket for Alfred\n";
     echo "pocket setup - Setup authentication\n";
+    echo "pocket auth - Finish authentication\n";
     echo "pocket version - Display version info\n";
     echo "pocket help - Display help info\n";
     echo "pocket &lt;url&gt; [tags] - Save url to Pocket\n";

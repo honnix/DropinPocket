@@ -1,5 +1,4 @@
-DropinPocket
-============
+# DropinPocket
 
 Save URL to Pocket - Alfred Workflow
 
@@ -16,3 +15,12 @@ end alfred_script
 ```
 
 Or get the workflow [here](https://www.dropbox.com/s/9i5j0szz3hbvs0q/DropInPocket%2BSafari%2BSelection%2BClipboard.alfredworkflow). Can not guarantee availability of this file.
+
+## Note for v3
+
+After migrating to v3 API, authentication should be oauth, and currently I don't have time to fix redirect_uri, you need
+to fix it by yourselves.
+
+1. pocket setup (Safari will be launched, and there you need to sign in with your Pocket username/pwd, after that you might be redirected to project's github page, just ignore that)
+2. pocket auth (your access token will be recorded to a file under the directory of this workflow, sorry it is not encrypted)
+3. then you are ready to go
