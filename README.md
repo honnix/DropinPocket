@@ -5,7 +5,7 @@ Save URL to Pocket - Alfred Workflow
 
 Converted from http://jdfwarrior.tumblr.com/post/21650256216/drop-in-pocket-extension-allows-you-to-quickly#_=_
 
-To directly save url in current Safari tab into Pocket, you probably can compose following script (contributed by @bzzbzzz, please refer to #1):
+To directly save url in current Safari tab into Pocket, you probably can compose following script (contributed by @bzzbzzz, please refer to https://github.com/honnix/DropinPocket/issues/1):
 
 ```
 on alfred_script(q)
