@@ -45,7 +45,7 @@
 				<key>escaping</key>
 				<integer>62</integer>
 				<key>script</key>
-				<string>$parm = '{query}';
+				<string>$param = '{query}';
 $api = '12917-11c7e8e9f5b2fb26624896fc';
 $pocket_add = "https://getpocket.com/v3/add";
 $code_tmp = "code.tmp";
@@ -56,20 +56,19 @@ $version = "0.2";
 	Parse user input
 *******************************/
 
-if ($parm == "setup") {
+if ($param == "setup") {
     setup($api, $code_tmp);
 }
-else if ($parm == "auth") {
+else if ($param == "auth") {
     auth($api, $code_tmp, $token);
 }
-else if ($parm == "version") {
+else if ($param == "version") {
     echo "Drop in Pocket " . $version . " for Alfred 2.";
     exit(1);
 }
-else if ($parm == "help") {
+else if ($param == "help") {
     echo "Drop in Pocket for Alfred\n";
     echo "pocket setup - Setup authentication\n";
-    echo "pocket auth - Finish authentication\n";
     echo "pocket version - Display version info\n";
     echo "pocket help - Display help info\n";
     echo "pocket &lt;url&gt; [tags] - Save url to Pocket\n";
@@ -81,11 +80,11 @@ else {
     $access_token = exec("cat $token");
 
     if ($access_token != null) {
-        $parts = explode(" ", $parm);
+        // $parts = explode(" ", $param);
 
         //url encode the passed url
-        $url = urlencode($parts[0]);
-        $tags = $parts[1];
+        $url = urlencode(substr($param, 0, strpos($param, " ")));
+        $tags = urlencode(substr($param, strpos($param, " ")));
 
         $curl_cmd = "curl -d consumer_key=$api -d access_token=$access_token -d url=$url";
         if ($tags != null) { $curl_cmd .= " -d tags=$tags"; }
@@ -95,7 +94,7 @@ else {
         $result = exec($curl_cmd);
 
         if ( strpos($result, "resolved_id") ) { echo "Saved url to Pocket"; }
-        else if ( ! strpos($result, "resolved_id") ) { echo "An error occurred while attempting to save the url $parm"; }
+        else if ( ! strpos($result, "resolved_id") ) { echo "An error occurred while attempting to save the url $param"; }
         else { echo "Um.. Something happened?"; }
     }
     else {
@@ -131,6 +130,8 @@ function auth($api, $code_tmp, $token) {
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>0931F551-BFC6-4D74-BA96-638A0468CDC9</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -150,6 +151,8 @@ function auth($api, $code_tmp, $token) {
 			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
 			<string>8A6446A4-A410-4C97-B1C9-3988C5BA724E</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -169,6 +172,8 @@ function auth($api, $code_tmp, $token) {
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>3620A049-0FA1-4831-A1D4-A5B5F93C0490</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 	</array>
 	<key>readme</key>
