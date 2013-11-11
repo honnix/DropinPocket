@@ -83,8 +83,13 @@ else {
         // $parts = explode(" ", $param);
 
         //url encode the passed url
-        $url = urlencode(substr($param, 0, strpos($param, " ")));
-        $tags = urlencode(substr($param, strpos($param, " ")));
+        $pos = strpos($param, " ");
+        if (!$pos) {
+            $url = urlencode($param);
+        } else {
+            $url = urlencode(substr($param, 0, $pos));
+            $tags = urlencode(substr($param, $pos));
+        }
 
         $curl_cmd = "curl -d consumer_key=$api -d access_token=$access_token -d url=$url";
         if ($tags != null) { $curl_cmd .= " -d tags=$tags"; }
